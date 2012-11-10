@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,11 @@ public class BouncingBabiesGame extends JComponent
     private int gravity = 1;
     private int groundY = gameHeight - groundHeight;
     private int firemanX = 400;
+    Image babyImage;
+
+    public BouncingBabiesGame() throws IOException {
+        babyImage = ImageIO.read(getClass().getResource("baby.png"));
+    }
 
     public static void main(String[] args) throws IOException {
         JFrame window = new JFrame("Save the Babies!");
@@ -75,7 +81,7 @@ public class BouncingBabiesGame extends JComponent
 
         // Baby
         g.setColor(new Color(241, 209, 86));
-        g.fillRect(babyX, (int) babyY, 25, 25);
+        g.drawImage(babyImage, babyX, (int) babyY, null);
     }
 
     @Override
