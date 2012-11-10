@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 /**
@@ -12,7 +14,7 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class BouncingBabiesGame extends JComponent
-        implements ActionListener {
+        implements ActionListener, KeyListener {
 
     private int gameWidth = 800;
     private int gameHeight = 600;
@@ -22,6 +24,7 @@ public class BouncingBabiesGame extends JComponent
     private double babyY = 100;
     private double babyYSpeed = 0;
     private int gravity = 1;
+    private int firemanX = 400;
 
     public static void main(String[] args) throws IOException {
         JFrame window = new JFrame("Save the Babies!");
@@ -34,6 +37,7 @@ public class BouncingBabiesGame extends JComponent
 
         Timer t = new Timer(30, game);
         t.start();
+        window.addKeyListener(game);
     }
 
     @Override
@@ -61,7 +65,6 @@ public class BouncingBabiesGame extends JComponent
 
         // Firemen
         g.setColor(new Color(84, 163, 181));
-        int firemanX = 400;
         g.fillRect(firemanX, gameHeight - groundHeight - 60, 30, 60);
         g.fillRect(firemanX + 150, gameHeight - groundHeight - 60, 30, 60);
 
@@ -80,5 +83,27 @@ public class BouncingBabiesGame extends JComponent
         babyY = babyY + babyYSpeed;
         babyYSpeed = babyYSpeed + gravity;
         repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            firemanX = 100;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            firemanX = 270;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            firemanX = 440;
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }
