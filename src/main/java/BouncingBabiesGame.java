@@ -24,6 +24,7 @@ public class BouncingBabiesGame extends JComponent
     private double babyY = 100;
     private double babyYSpeed = 0;
     private int gravity = 1;
+    private int groundY = gameHeight - groundHeight;
     private int firemanX = 400;
 
     public static void main(String[] args) throws IOException {
@@ -82,6 +83,12 @@ public class BouncingBabiesGame extends JComponent
         babyX = babyX + 4;
         babyY = babyY + babyYSpeed;
         babyYSpeed = babyYSpeed + gravity;
+
+        // Check if the baby is near the ground
+        if (babyY + 25 >= groundY) {
+            babyYSpeed = -0.8 * babyYSpeed;
+        }
+
         repaint();
     }
 
