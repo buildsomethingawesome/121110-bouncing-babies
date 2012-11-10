@@ -11,6 +11,11 @@ import java.io.IOException;
  */
 public class BouncingBabiesGame extends JComponent {
 
+    private int gameWidth = 800;
+    private int gameHeight = 600;
+    private int groundHeight = 40;
+    private int buildingWidth = 60;
+
     public static void main(String[] args) throws IOException {
         JFrame window = new JFrame("Save the Babies!");
         BouncingBabiesGame game = new BouncingBabiesGame();
@@ -23,23 +28,22 @@ public class BouncingBabiesGame extends JComponent {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(800, 600);
+        return new Dimension(gameWidth, gameHeight);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         // Background
         g.setColor(Color.black);
-        g.fillRect(0, 0, 800, 600);
+        g.fillRect(0, 0, gameWidth, gameHeight);
 
         // Ground
         g.setColor(Color.white.darker());
-        g.fillRect(0, 600 - 40, 800, 40);
+        g.fillRect(0, gameHeight - groundHeight, gameWidth, groundHeight);
 
         // Building
         g.setColor(new Color(212, 81, 58));
-        int buildingWidth = 60;
-        g.fillRect(0, 60, buildingWidth, 600 - 60 - 40);
+        g.fillRect(0, 60, buildingWidth, gameHeight - 60 - 40);
 
         // Ambulance
         g.setColor(Color.white);
@@ -48,8 +52,8 @@ public class BouncingBabiesGame extends JComponent {
         // Firemen
         g.setColor(new Color(84, 163, 181));
         int firemanX = 400;
-        g.fillRect(firemanX, 600 - 40 - 60, 30, 60);
-        g.fillRect(firemanX + 150, 600 - 40 - 60, 30, 60);
+        g.fillRect(firemanX, gameHeight - groundHeight - 60, 30, 60);
+        g.fillRect(firemanX + 150, gameHeight - groundHeight - 60, 30, 60);
 
         // Trampoline
         g.setColor(Color.white);
