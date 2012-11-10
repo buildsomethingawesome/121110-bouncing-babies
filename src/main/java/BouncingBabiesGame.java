@@ -89,6 +89,11 @@ public class BouncingBabiesGame extends JComponent
             babyYSpeed = -0.8 * babyYSpeed;
         }
 
+        if (babyX > gameWidth) {
+            babyX = 50;
+            babyY = 100;
+            babyYSpeed = 0;
+        }
         repaint();
     }
 
