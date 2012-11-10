@@ -89,15 +89,22 @@ public class BouncingBabiesGame extends JComponent
             // Check if the trampoline is under the baby
             if (babyX + 25 >= firemanX && firemanX + 150 >= babyX) {
                 babyYSpeed = -0.8 * babyYSpeed;
+            } else {
+                // TODO: lose a life
+                tossNewBaby();
             }
         }
 
         if (babyX > gameWidth) {
-            babyX = 50;
-            babyY = 100;
-            babyYSpeed = 0;
+            tossNewBaby();
         }
         repaint();
+    }
+
+    private void tossNewBaby() {
+        babyX = 50;
+        babyY = 100;
+        babyYSpeed = 0;
     }
 
     @Override
