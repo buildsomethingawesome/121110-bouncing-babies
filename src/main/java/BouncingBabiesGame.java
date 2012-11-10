@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -9,12 +11,17 @@ import java.io.IOException;
  * Time: 10:12 AM
  * To change this template use File | Settings | File Templates.
  */
-public class BouncingBabiesGame extends JComponent {
+public class BouncingBabiesGame extends JComponent
+        implements ActionListener {
 
     private int gameWidth = 800;
     private int gameHeight = 600;
     private int groundHeight = 40;
     private int buildingWidth = 60;
+    private int babyX = 50;
+    private double babyY = 100;
+    private double babyYSpeed = 0;
+    private int gravity = 1;
 
     public static void main(String[] args) throws IOException {
         JFrame window = new JFrame("Save the Babies!");
@@ -24,6 +31,9 @@ public class BouncingBabiesGame extends JComponent {
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setVisible(true);
+
+        Timer t = new Timer(30, game);
+        t.start();
     }
 
     @Override
@@ -61,6 +71,14 @@ public class BouncingBabiesGame extends JComponent {
 
         // Baby
         g.setColor(new Color(241, 209, 86));
-        g.fillRect(400, 300, 25, 25);
+        g.fillRect(babyX, (int) babyY, 25, 25);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        babyX = babyX + 4;
+        babyY = babyY + babyYSpeed;
+        babyYSpeed = babyYSpeed + gravity;
+        repaint();
     }
 }
