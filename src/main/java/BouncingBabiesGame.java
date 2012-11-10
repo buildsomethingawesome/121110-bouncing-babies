@@ -86,7 +86,10 @@ public class BouncingBabiesGame extends JComponent
 
         // Check if the baby is near the ground
         if (babyY + 25 >= groundY) {
-            babyYSpeed = -0.8 * babyYSpeed;
+            // Check if the trampoline is under the baby
+            if (babyX + 25 >= firemanX && firemanX + 150 >= babyX) {
+                babyYSpeed = -0.8 * babyYSpeed;
+            }
         }
 
         if (babyX > gameWidth) {
